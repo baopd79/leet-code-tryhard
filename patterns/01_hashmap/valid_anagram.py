@@ -70,6 +70,20 @@ def solution_brute_force(s: str, t: str) -> bool:
     return sorted(s) == sorted(t)
 
 
+def solution_optimal(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+    count = {}
+    for i in s:
+        count[i] = count.get(i, 0) + 1
+    for i in t:
+        count[i] = count.get(i, 0) - 1
+    for v in count.values():
+        if v != 0:
+            return False
+    return True
+
+
 # -------------------------------------------------------
 # TEST CASES  ← Tự viết trước khi submit
 # -------------------------------------------------------
@@ -77,10 +91,26 @@ def solution_brute_force(s: str, t: str) -> bool:
 
 def test():
     # Happy path — ví dụ bình thường
+    assert solution_brute_force("anagram", "nagaram") == True
+    assert solution_brute_force("rat", "car") == False
+    assert solution_optimal("anagram", "nagaram") == True
+    assert solution_optimal("rat", "car") == False
     # assert solution(...) == ...
 
     # Edge cases
     # assert solution([]) == ...
+    assert solution_brute_force("", "") == True
+    assert solution_optimal("", "") == True
+    assert solution_brute_force("a", "a") == True
+    assert solution_optimal("a", "a") == True
+    assert solution_brute_force("a", "b") == False
+    assert solution_optimal("a", "b") == False
+    assert solution_brute_force("aaa", "aaa") == True
+    assert solution_optimal("aaa", "aaa") == True
+    assert solution_brute_force("aabbcc", "abcabc") == True
+    assert solution_optimal("aabbcc", "abcabc") == True
+    assert solution_brute_force("aabbcc", "abcabd") == False
+    assert solution_optimal("aabbcc", "abcabd") == False
 
     print("All tests passed!")
 

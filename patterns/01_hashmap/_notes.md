@@ -1,0 +1,4 @@
+- [x] Two Sum → Dict {value: index}
+- [x] Contains Duplicate → Set {value} ← thêm dòng này
+- [ ] Valid Anagram
+- [ ] Best Time to Buy and Sell Stock
