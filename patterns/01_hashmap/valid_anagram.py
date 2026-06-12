@@ -27,7 +27,7 @@ Constraints:
 APPROACH  ← Viết vào đây TRƯỚC KHI CODE
 -------------------------------------------------------
 Brute force:
-    [Mô tả cách đơn giản nhất — O(?)]
+    [Mô tả cách đơn giản nhất — O(n log n)]
     Sắp xếp cả hai chuỗi và so sánh chúng.
     Nếu chúng giống nhau, trả về true; ngược lại, trả về false.
 
@@ -46,8 +46,8 @@ Optimal:
 
 
 Complexity:
-    Time : O(?)
-    Space: O(?)
+    Time : O(n)
+    Space: O(1) - Vì chỉ có 26 ký tự tiếng Anh lowercase
 
 -------------------------------------------------------
 EDGE CASES cần xử lý
@@ -83,7 +83,14 @@ def solution_optimal(s: str, t: str) -> bool:
             return False
     return True
 
-
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s)!=len(t):
+            return False
+        for i in set(s):
+            if s.count(i)!=t.count(i):
+                return False
+        return True     
 # -------------------------------------------------------
 # TEST CASES  ← Tự viết trước khi submit
 # -------------------------------------------------------
